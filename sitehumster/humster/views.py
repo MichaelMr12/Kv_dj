@@ -5,5 +5,5 @@ from django.shortcuts import render
 def index(request):
     return HttpResponse('страница приложения humster' )
 
-def category(request):
-    return HttpResponse('<h1>страница хомячки по категориям</h1>' )
+def category(request, cat_id):
+    return HttpResponse(f'<h1>страница хомячки по категориям</h1> <p> Хомячок номер -<b>{cat_id}</b> </p>' )
