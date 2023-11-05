@@ -5,7 +5,11 @@ from django.shortcuts import render
 # Create your views here.
 def index(request):
     return render(request, 'humster/index.html')
+def animals(request):
+    return render(request, 'humster/animals.html')
 
+def kub(request):
+    return render(request, 'humster/3D_kub.html')
 
 def category(request, cat_id):
     data = {'cat_id': cat_id}
