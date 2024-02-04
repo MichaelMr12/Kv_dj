@@ -1,12 +1,15 @@
-
-
 from django.urls import path
-from . import views
+from .views import *
+
 urlpatterns = [
 
-    path('', views.index),
-    path('cub/', views.kub),
-    path('animals/', views.animals),
-    path('cats/<int:cat_id>/', views.category),
-    path('cats/<slug:cat_slug>/', views.category_slug),
+    path('', index),
+    path('cub/', kub),
+    path('animals/', animals),
+    path('cats/<int:cat_id>/', category),
+    path('cats/<slug:cat_slug>/', category_slug),
+    path('womenid/<int:id>/', show_womenid, name='womenid'),
+    path('womensid/', womensid, name='womensid'),
+    path('womenslug/<slug:sl>/', show_womensl, name='womenslug'),
+    path('womens-slug/', womensslug, name='womens-slug'),
 ]

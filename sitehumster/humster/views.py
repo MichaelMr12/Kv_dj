@@ -1,15 +1,68 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+
+from humster.models import Women
+
+menu = [{'title': 'сп женщин id', 'url_name': 'womensid'},
+        {'title': 'сп женщин слагам', 'url_name': 'womens-slug'},
+        ]
+
+
+def show_womenid(request, id):
+    id = get_object_or_404(Women, pk=id)
+
+    data = {
+        'title': id.title,
+        'menu': menu,
+        'id': id,
+
+    }
+
+    return render(request, 'humster/womenid.html', context=data)
+
+
+def show_womensl(request, sl):
+    id = get_object_or_404(Women, slug=sl)
+    data = {
+
+        'menu': menu,
+        'id': id,
+
+    }
+    return render(request, 'humster/womenid.html', context=data)
+
+
+def womensid(request):
+    posts = Women.objects.all()
+    data = {
+        'menu': menu,
+        'posts':posts,
+    }
+    return render(request, 'humster/womensid.html', context=data)
+
+
+def womensslug(request):
+    posts = Women.objects.filter(is_published=1)
+    data = {
+        'title': 'Главная страница',
+        'menu': menu,
+        'posts': posts,
+    }
+    return render(request, 'humster/womens-slug.html', context=data)
 
 
 # Create your views here.
 def index(request):
-    return render(request, 'humster/index.html')
+    return render(request, 'humster/index.html', {'menu': menu})
+
+
 def animals(request):
     return render(request, 'humster/animals.html')
 
+
 def kub(request):
     return render(request, 'humster/3D_kub.html')
+
 
 def category(request, cat_id):
     data = {'cat_id': cat_id}

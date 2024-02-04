@@ -1,4 +1,6 @@
 from django.db import models
+from django.urls import reverse
+
 
 # Create your models here.
 class Women(models.Model):
@@ -7,6 +9,10 @@ class Women(models.Model):
     time_create = models.DateTimeField(auto_now_add=True)
     time_update = models.DateTimeField(auto_now=True)
     is_published = models.BooleanField(default=True)
+    slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL")
+
+    def get_absolute_url(self):
+        return reverse('womenslug', kwargs={'sl': self.slug})
 
 class TheBestBooks(models.Model):
     BooksName = models.CharField(max_length=40)
