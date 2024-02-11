@@ -22,3 +22,5 @@ urlpatterns = [
     path('', include('humster.urls')),
 
 ]
+admin.site.site_header = "Моя админка"
+admin.site.index_title = 'Сайт про книги и про певиц'

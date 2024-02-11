@@ -11,8 +11,13 @@ class Women(models.Model):
     is_published = models.BooleanField(default=True)
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL")
 
+    class Meta:
+        verbose_name = "известные певицы"
+        verbose_name_plural = "известные певицы"
+
     def get_absolute_url(self):
         return reverse('womenslug', kwargs={'sl': self.slug})
+
 
 class TheBestBooks(models.Model):
     BooksName = models.CharField(max_length=40)
@@ -21,3 +26,7 @@ class TheBestBooks(models.Model):
     Summary = models.TextField(blank=True)
     Cost = models.IntegerField(default=700)
     Interest = models.BooleanField(default=True)
+
+    class Meta:
+        verbose_name = "мои любимые книги"
+        verbose_name_plural = "мои любимые книги"
