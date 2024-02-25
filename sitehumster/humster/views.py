@@ -3,7 +3,8 @@ from django.shortcuts import render, get_object_or_404
 
 from humster.models import Women
 
-menu = [{'title': 'сп женщин id', 'url_name': 'womensid'},
+menu = [{'title': 'главная', 'url_name': 'home'},
+    {'title': 'сп женщин id', 'url_name': 'womensid'},
         {'title': 'сп женщин слагам', 'url_name': 'womens-slug'},
         ]
 
