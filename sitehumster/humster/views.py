@@ -4,9 +4,18 @@ from django.shortcuts import render, get_object_or_404
 from humster.models import Women
 
 menu = [{'title': 'главная', 'url_name': 'home'},
-    {'title': 'сп женщин id', 'url_name': 'womensid'},
+        {'title': 'сп женщин id', 'url_name': 'womensid'},
         {'title': 'сп женщин слагам', 'url_name': 'womens-slug'},
         ]
+
+
+def addpost(request):
+    data = {
+        'menu': menu,
+
+    }
+
+    return render(request, 'humster/addpost.html', context=data)
 
 
 def show_womenid(request, id):
@@ -37,7 +46,7 @@ def womensid(request):
     posts = Women.objects.all()
     data = {
         'menu': menu,
-        'posts':posts,
+        'posts': posts,
     }
     return render(request, 'humster/womensid.html', context=data)
 
