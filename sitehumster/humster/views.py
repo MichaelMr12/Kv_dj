@@ -1,3 +1,5 @@
+import os
+
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 
@@ -8,7 +10,25 @@ menu = [{'title': 'главная', 'url_name': 'home'},
         {'title': 'добавить пост', 'url_name': 'addpost'},
         {'title': 'сп женщин id', 'url_name': 'womensid'},
         {'title': 'сп женщин слагам', 'url_name': 'womens-slug'},
+        {'title': 'о программе', 'url_name': 'about'},
         ]
+
+
+def handle_upload_file(f):
+    with open(f"uploads/{f.name}", "wb+") as destination:
+        for chunk in f.chunks():
+            destination.write(chunk)
+
+
+def about(request):
+    if request.method == "POST":
+        print(os.getcwd())
+        handle_upload_file(request.FILES['file_upload'])
+    data = {
+        'menu': menu,
+        'title': 'о сайте',
+    }
+    return render(request, 'humster/about.html', context=data)
 
 
 def addpost(request):

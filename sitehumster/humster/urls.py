@@ -13,4 +13,5 @@ urlpatterns = [
     path('womensid/', womensid, name='womensid'),
     path('womenslug/<slug:sl>/', show_womensl, name='womenslug'),
     path('womens-slug/', womensslug, name='womens-slug'),
+    path('about/', about, name='about'),
 ]
